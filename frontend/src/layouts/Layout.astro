@@ -2,8 +2,9 @@
 interface Props {
   title: string;
   description?: string;
+  pageStyles?: string;
 }
-const { title, description = 'HNB Investment Bank' } = Astro.props;
+const { title, description = 'HNB Investment Bank — Sri Lanka\'s Investment Bank', pageStyles } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -14,9 +15,33 @@ const { title, description = 'HNB Investment Bank' } = Astro.props;
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/section-toggle.css" />
+    {pageStyles && <link rel="stylesheet" href={pageStyles} />}
   </head>
   <body>
     <slot />
+    <script src="/scripts.js" is:inline></script>
+    <script is:inline>
+      (function () {
+        'use strict';
+        var ACTIVE = 'section-toggle-active';
+        document.querySelectorAll('.section-host[data-section-id]').forEach(function (host) {
+          var variants = Array.prototype.slice.call(host.children).filter(function (el) {
+            return el.classList && el.classList.contains('variant');
+          });
+          var want = (host.getAttribute('data-default-variant') || 'B').toUpperCase();
+          var defaultIndex = 0;
+          variants.forEach(function (v, i) {
+            if ((v.getAttribute('data-variant') || '').toUpperCase() === want) defaultIndex = i;
+          });
+          variants.forEach(function (v, i) {
+            if (i === defaultIndex) v.classList.add(ACTIVE);
+            else v.classList.remove(ACTIVE);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

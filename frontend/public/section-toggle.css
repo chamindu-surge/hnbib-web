@@ -1,0 +1,53 @@
+/*
+ * section-toggle.css — Chalk Meridian
+ * Variant visibility controlled by .section-toggle-active class.
+ * The side rail panel is hidden in production via the last rule.
+ */
+
+/* Variant visibility */
+.section-host > .variant {
+  display: none;
+}
+.section-host > .variant.section-toggle-active {
+  display: block;
+}
+
+/* Side rail (hidden in production) */
+.section-toggle-rail {
+  position: fixed;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  z-index: 9999;
+  width: 240px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 12px 14px;
+  background: rgba(15, 18, 28, 0.92);
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ink, #e0e6f0);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.section-toggle-rail.section-toggle-hidden { display: none; }
+
+/* Motion enforcement */
+body.motion-off,
+body.motion-off *,
+body.motion-off *::before,
+body.motion-off *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+body.motion-reduced .motion-continuous {
+  animation: none !important;
+}
+
+/* Variant toggle panel is hidden — defaults are locked via data-default-variant */
+.section-toggle-rail { display: none !important; }
