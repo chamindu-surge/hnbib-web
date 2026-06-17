@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": "Career openings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "department": {
+      "type": "enumeration",
+      "enum": [
+        "Equity Dealing",
+        "Corporate Finance",
+        "Fixed Income",
+        "Research",
+        "Venture Capital",
+        "Technology",
+        "Compliance"
+      ],
+      "required": true
+    },
+    "employmentType": {
+      "type": "enumeration",
+      "enum": ["Full-time", "Part-time", "Contract"],
+      "default": "Full-time"
+    },
+    "urgency": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "default": "Colombo 10"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
