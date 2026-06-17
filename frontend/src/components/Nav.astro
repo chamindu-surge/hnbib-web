@@ -1,0 +1,46 @@
+---
+interface Props {
+  active?: string;
+}
+const { active = '' } = Astro.props;
+---
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track motion-continuous">
+    <span class="ticker-item">ASPI <span class="ticker-val">22,622.34</span> <span class="ticker-up">▲ 0.32%</span></span>
+    <span class="ticker-item">S&amp;P SL20 <span class="ticker-val">6,225.28</span> <span class="ticker-dn">▼ 0.12%</span></span>
+    <span class="ticker-item">10Y T-Bond <span class="ticker-val">11.25%</span></span>
+    <span class="ticker-item">91-Day T-Bill <span class="ticker-val">9.48%</span></span>
+    <span class="ticker-item">Repo Rate <span class="ticker-val">8.50%</span></span>
+    <span class="ticker-item">USD/LKR <span class="ticker-val">298.45</span></span>
+    <span class="ticker-item">ASPI <span class="ticker-val">22,622.34</span> <span class="ticker-up">▲ 0.32%</span></span>
+    <span class="ticker-item">S&amp;P SL20 <span class="ticker-val">6,225.28</span> <span class="ticker-dn">▼ 0.12%</span></span>
+    <span class="ticker-item">10Y T-Bond <span class="ticker-val">11.25%</span></span>
+    <span class="ticker-item">91-Day T-Bill <span class="ticker-val">9.48%</span></span>
+    <span class="ticker-item">Repo Rate <span class="ticker-val">8.50%</span></span>
+    <span class="ticker-item">USD/LKR <span class="ticker-val">298.45</span></span>
+  </div>
+</div>
+
+<nav class="global-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="/">
+    <img src="/assets/logo/hnb-inv-logo.webp" alt="HNB Investment Bank" />
+  </a>
+  <ul class="nav-links">
+    <li class="nav-has-drop">
+      <a href="/hnb-stockbrokers/" class={active === 'businesses' ? 'active' : ''}>Our Businesses</a>
+      <ul class="nav-drop">
+        <li><a href="/hnb-stockbrokers/">HNB Stockbrokers</a></li>
+        <li><a href="/hnb-securities/">HNB Securities</a></li>
+        <li><a href="/corporate-finance/">Corporate Finance</a></li>
+        <li><a href="/lanka-ventures/">Lanka Ventures</a></li>
+      </ul>
+    </li>
+    <li><a href="/about-us/" class={active === 'about' ? 'active' : ''}>About Us</a></li>
+    <li><a href="/investor-relations/" class={active === 'ir' ? 'active' : ''}>Investor Relations</a></li>
+    <li><a href="/news/" class={active === 'news' ? 'active' : ''}>News</a></li>
+    <li><a href="/careers/" class={active === 'careers' ? 'active' : ''}>Careers</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-cta" href="/contact-us/">Contact Us</a>
+  </div>
+</nav>

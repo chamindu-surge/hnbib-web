@@ -1,0 +1,52 @@
+---
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+}
+const { title, description = 'HNB Investment Bank', active } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/section-toggle.css" />
+    <slot name="head" />
+  </head>
+  <body>
+    <Nav active={active} />
+    <slot />
+    <SiteFooter />
+    <script src="/scripts.js" is:inline></script>
+    <script is:inline>
+      (function () {
+        'use strict';
+        var ACTIVE = 'section-toggle-active';
+        document.querySelectorAll('.section-host[data-section-id]').forEach(function (host) {
+          var variants = Array.prototype.slice.call(host.children).filter(function (el) {
+            return el.classList && el.classList.contains('variant');
+          });
+          var want = (host.getAttribute('data-default-variant') || 'A').toUpperCase();
+          var defaultIndex = 0;
+          variants.forEach(function (v, i) {
+            if ((v.getAttribute('data-variant') || '').toUpperCase() === want) defaultIndex = i;
+          });
+          variants.forEach(function (v, i) {
+            if (i === defaultIndex) v.classList.add(ACTIVE);
+            else v.classList.remove(ACTIVE);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
